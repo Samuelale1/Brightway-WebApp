@@ -1,6 +1,7 @@
 <?php
 require 'includes/db.php';
 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = htmlspecialchars($_POST['name']);
     $email = $_POST['email'];
@@ -10,9 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("sss", $name, $email, $password);
     
     if ($stmt->execute()) {
-        echo "Registration successful! <a href='login.php' >Login now</a>";
+        echo "<script>alert('Registration successful! Redirecting to login...'); window.location.href = 'login.php';</script>";
     } else {
-        echo "Error: " . $stmt->error;
+        $error = addslashes($stmt->error); 
+        echo "<script>alert('Registration failed: $error');</script>";
     }
 }
 ?>
