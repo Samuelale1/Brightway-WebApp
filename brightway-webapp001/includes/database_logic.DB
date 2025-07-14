@@ -1,0 +1,48 @@
+
+CREATE FROM DATATBASE IF NOT EXISTS BrightwayData;
+
+USE BrightwayData;
+
+create TABLE if not exists Users(
+    id int AUTO_INCREMENT primary Key,
+    name Varchar(100),
+    email varchar(100),
+    password TEXT,
+    role ENUM ('admin','salesperson','customer') NOT NULL DEFAULT 'customer';
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE IF NOT EXISTS Products(
+    id int AUTO_INCREMENT Primary Key,
+    name varchar(100),
+    description text,
+    price Decimal (10,2),
+    added_by INT,
+    Foreign Key (added_by) References Users(id)
+);
+
+CREATE TABLE IF NOT EXISTS ORDERS(      
+    id INT AUTO_INCREMENT Primary Key,
+    customer_id INT,
+    salesperson_id INT,
+    delivery_person varchar(100),
+    status ENUM( 'pending','delivered') NOT NULL DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Foreign Key (customer_id) References Users(id),
+    Foreign Key (salesperson_id) References Users(id),
+
+);
+
+# create a link to the datatbase 
+# this synthax is written in php
+$host = 'localhost';
+$user='root';
+$password='';
+$db= 'BrightwayData';
+
+$conn= mysqli_connect($host,$user,$password,$db);
+
+if (!$conn){
+        die("connection Failed".mysqli_connect_error());
+}

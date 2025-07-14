@@ -1,10 +1,18 @@
 <?php
+// Start the session once
 session_start();
 
+/**
+ * Check if a user is logged in
+ */
 function isLoggedIn() {
     return isset($_SESSION['user_id']);
 }
 
+/**
+ * Force login before accessing a page
+ * Optionally check for user role
+ */
 function requireLogin($role = null) {
     if (!isLoggedIn()) {
         header("Location: /brightway-webapp001/login.php");
@@ -15,5 +23,20 @@ function requireLogin($role = null) {
         echo "Access denied: You are not allowed to access this page.";
         exit();
     }
+}
+
+/**
+ * Role helpers (optional if you prefer calling isLoggedIn() and checking role manually)
+ */
+function isAdmin() {
+    return isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
+}
+
+function isSalesperson() {
+    return isset($_SESSION['role']) && $_SESSION['role'] === 'salesperson';
+}
+
+function isCustomer() {
+    return isset($_SESSION['role']) && $_SESSION['role'] === 'customer';
 }
 ?>
