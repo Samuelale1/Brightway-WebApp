@@ -1,9 +1,9 @@
 <?php
-// Start the session once
+
 session_start();
 
 /**
- * Check if a user is logged in
+ * Checks if a user is logged in
  */
 function isLoggedIn() {
     return isset($_SESSION['user_id']);
@@ -15,12 +15,13 @@ function isLoggedIn() {
  */
 function requireLogin($role = null) {
     if (!isLoggedIn()) {
+        echo"<script> alert('You haven't logged in yet')</script>";
         header("Location: /brightway-webapp001/login.php");
         exit();
     }
 
     if ($role && $_SESSION['role'] !== $role) {
-        echo "Access denied: You are not allowed to access this page.";
+        echo "<script> alert('Access denied: You are not allowed to access this page.')</script>";
         exit();
     }
 }
@@ -40,3 +41,11 @@ function isCustomer() {
     return isset($_SESSION['role']) && $_SESSION['role'] === 'customer';
 }
 ?>
+
+
+
+
+
+
+
+

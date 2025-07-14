@@ -2,7 +2,7 @@
 require '../includes/auth.php';
 
 if (!isCustomer()) {
-    echo "<script> alert('Acess denied') </script>";
+    echo "<script> alert('Access denied') </script>";
     exit();
 }
 ?>
