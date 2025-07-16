@@ -13,18 +13,19 @@ function isLoggedIn() {
  * Force login before accessing a page
  * Optionally check for user role
  */
-function requireLogin($role = null) {
+function requireLogin($roles = null) {
     if (!isLoggedIn()) {
-        echo"<script> alert('You haven't logged in yet')</script>";
-        header("Location: /brightway-webapp001/login.php");
+        echo "<script>alert('You haven\\'t logged in yet'); window.location.href = 'Brightway/brightway-webapp001/login.php';</script>";
         exit();
     }
 
-    if ($role && $_SESSION['role'] !== $role) {
-        echo "<script> alert('Access denied: You are not allowed to access this page.')</script>";
+    // If roles are specified and the current user's role is not in the list
+    if ($roles && !in_array($_SESSION['role'], (array)$roles)) {
+        echo "<script>alert('Access denied: You are not allowed to access this page.'); window.history.back();</script>";
         exit();
     }
 }
+
 
 /**
  * Role helpers (optional if you prefer calling isLoggedIn() and checking role manually)
