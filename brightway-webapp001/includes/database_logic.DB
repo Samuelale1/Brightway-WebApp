@@ -34,6 +34,12 @@ ALTER TABLE products
 ADD COLUMN created_by INT NOT NULL,
 ADD CONSTRAINT fk_created_by FOREIGN KEY (created_by) REFERENCES users(id);
 
+ALTER TABLE products 
+ADD COLUMN updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE products 
+ADD COLUMN deleted_at DATETIME DEFAULT NULL ;
+
 
 
 CREATE TABLE IF NOT EXISTS ORDERS(      
@@ -48,6 +54,17 @@ CREATE TABLE IF NOT EXISTS ORDERS(
 
 );
 
+CREATE TABLE audit_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    action VARCHAR(100),
+    target_type VARCHAR(50),  -- e.g. 'product', 'order'
+    target_id INT,            -- the ID of the product or order affected
+    description TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+# adds audit logs to allow me know when and where things happen
+
 # create a link to the datatbase 
 # this synthax is written in php
 $host = 'localhost';
@@ -60,3 +77,4 @@ $conn= mysqli_connect($host,$user,$password,$db);
 if (!$conn){
         die("connection Failed".mysqli_connect_error());
 }
+

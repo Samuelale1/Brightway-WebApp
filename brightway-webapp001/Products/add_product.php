@@ -18,8 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
         // Prepare to insert the product with user ID
-        $stmt = $conn->prepare("INSERT INTO products (name, price, category, image, created_by) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sdssi", $name, $price, $category, $image, $userId);
+        $created_by = $_SESSION['user_id'];
+        $now = date('Y-m-d H:i:s');
+
+        $stmt = $conn->prepare("INSERT INTO products (name, price, category, image, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sdssis", $name, $price, $category, $image, $created_by, $now);
+
+
 
         if ($stmt->execute()) {
             $message = "✅ Product added successfully!";
