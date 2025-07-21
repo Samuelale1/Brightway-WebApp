@@ -2,7 +2,7 @@
 require '../includes/auth.php';
 
 if (!isCustomer()) {
-    echo "<script> alert('Access denied') </script>";
+    echo "<script> alert('Access denied'); window.location.href = '../login.php'</script>";
     exit();
 }
 ?>
@@ -12,8 +12,9 @@ if (!isCustomer()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="images/Brightway-logo.png">
+    <link rel="icon" type="image/x-icon" href="brightway-webapp001/images/Brightway-logo.png">
     <title>Customer</title>
+    <link rel="stylesheet" href="assets/Css/Style.css">
 </head>
 <body>
     <h2> <?php echo "Welcome ".$_SESSION['name'] ."! To Brightway webapp "  ; ?>!</h2>

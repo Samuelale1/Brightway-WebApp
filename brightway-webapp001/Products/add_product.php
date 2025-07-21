@@ -1,7 +1,7 @@
 <?php
-require '../includes/db.php';      // Connect to the database
-require '../includes/auth.php';    // Include session checks
-requireLogin(['admin', 'salesperson']); // Only admin and salesperson can add products
+require '../includes/db.php';      
+require '../includes/auth.php';   
+requireLogin(['admin', 'salesperson']); 
 
 $message = '';
 
@@ -35,8 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Product</title>
+    <link rel="stylesheet" href="assets/Css/Style.css">
 </head>
 <body style="font-family: sans-serif;">
     <h2>Add New Product</h2>
