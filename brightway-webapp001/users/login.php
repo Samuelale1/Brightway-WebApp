@@ -21,13 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Redirect based on role
         switch ($user['role']) {
             case 'admin':
-                header("Location: dashboard/admin.php");
+                header("Location: brightway-webapp001\dashboard\admin.php");
                 break;
             case 'salesperson':
-                header("Location: dashboard/salesperson.php");
+                header("Location: brightway-webapp001\dashboard\salesperson.php");
                 break;
             case 'customer':
-                header("Location: dashboard/customer.php");
+                header("Location: brightway-webapp001\dashboard\Customer.php");
                 break;
         }
         exit();
@@ -49,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         *{
             margin: 0;
             padding:0;
-
         }
         body{
             background-color: #FAF5ED;
@@ -80,11 +79,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             border-radius: 20px;
             justify-content: center;
         }
+
         h2{
             padding-bottom: 10px;
-        }
-
-            
+        }  
         input{
             border-radius: 5px;
             padding:10px;

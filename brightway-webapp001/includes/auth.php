@@ -15,7 +15,7 @@ function isLoggedIn() {
  */
 function requireLogin($roles = null) {
     if (!isLoggedIn()) {
-        echo "<script>alert('You haven\\'t logged in yet'); window.location.href = 'Brightway/brightway-webapp001/login.php';</script>";
+        echo "<script>alert('You haven\\'t logged in yet'); window.location.href = 'brightway-webapp001\users\login.php';</script>";
         exit();
     }
 

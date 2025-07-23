@@ -2,7 +2,7 @@
 require '../includes/auth.php';
 
 if (!isCustomer()) {
-    echo "<script> alert('Access denied'); window.location.href = '../login.php'</script>";
+    echo "<script> alert('Access denied'); window.location.href = 'brightway-webapp001\users\login.php'</script>";
     exit();
 }
 ?>

@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("sss", $name, $email, $password);
     
     if ($stmt->execute()) {
-        echo "<script>alert('Registration successful! Redirecting to login...'); window.location.href = 'login.php';</script>";
+        echo "<script>alert('Registration successful! Redirecting to login...'); window.location.href = 'brightway-webapp001\users\login.php';</script>";
     } else {
         $error = addslashes($stmt->error); 
         echo "<script>alert('Registration failed: $error');</script>";
