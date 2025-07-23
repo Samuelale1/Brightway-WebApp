@@ -1,13 +1,12 @@
 *{
     margin: 0;
     padding:0;
-
+    font-family:"inknuk-antiqua","sans-serif";
+    box-sizing: border-box;
 }
 body{
      background-color: #FAF5ED;
-    color:#083A75;
-    font-family:"inknuk-antiqua","sans-serif";
-    box-sizing: border-box;
+        color:#083A75;
 }
         
 .parent {
@@ -33,6 +32,8 @@ form {
     justify-content: center;
 }
 h2{
+    margin: 0;
+    
     padding-bottom: 10px;
 }
 

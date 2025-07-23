@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brightway</title>
     <link rel="icon" type="image/x-icon" href="images/Brightway-logo.png">
-    <link rel="stylesheet" href="assets/Css/Style.css">
+    <link rel="stylesheet" href="brightway-webapp001\assets\Css\Style.css">
     <style>
         *{
             margin: 0;

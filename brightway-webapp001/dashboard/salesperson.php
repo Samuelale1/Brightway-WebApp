@@ -1,7 +1,6 @@
 <?php
 require '../includes/auth.php';
-requirelogin('admin');
-requirelogin('salesperson');
+requirelogin(['salesperson','admin']);
 
 if (!isSalesperson()) {
     echo "<script> alert('Access denied') </script>";
@@ -20,7 +19,7 @@ if (!isSalesperson()) {
     <link rel="stylesheet" href="assets/Css/Style.css">
 </head>
 <body>
-    <h2>Welcome Salesperson, <?php echo $_SESSION['name']. "!  TO Brightway Webapp"; ?></h2>
+    <h2>Welcome Salesperson, <?php echo $_SESSION['name']. "! to Brightway Webapp"; ?></h2>
     <a href="../logout.php">Logout</a>
 </body>
 </html>

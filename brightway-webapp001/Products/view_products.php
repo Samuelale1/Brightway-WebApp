@@ -125,8 +125,8 @@ $result = $stmt->get_result();
                     <td class="actions">
                    <?php if (isAdmin() || $_SESSION['user_id'] == $row['created_by']): ?>
      <?php if (is_null($row['deleted_at'])): ?>
-         <a href="edit_product.php?id=<?php echo $row['id']; ?>" style="margin-right: 10px;">✏️ Edit</a>
-         <a href="delete_product.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this product?')">❌ Delete</a>
+         <a href="../Products/edit_product.php?id=<?php echo $row['id']; ?>" style="margin-right: 10px;">✏️ Edit</a>
+         <a href="../Products/delete_product.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this product?')">❌ Delete</a>
     <?php else: ?>
             <a href="restore_product.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Restore this product?')">♻️ Undo Delete</a>
         <?php endif; ?>

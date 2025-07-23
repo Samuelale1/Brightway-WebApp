@@ -30,6 +30,6 @@ $update = $conn->prepare("UPDATE products SET deleted_at = NULL WHERE id = ?");
 $update->bind_param("i", $id);
 $update->execute();
 
-header("Location: view_products.php?msg=Product restored.");
+header("Location: ../Products/view_products.php?msg=Product restored");
 exit;
 ?>

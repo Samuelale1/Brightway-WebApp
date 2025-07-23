@@ -54,6 +54,18 @@ CREATE TABLE IF NOT EXISTS ORDERS(
 
 );
 
+
+CREATE TABLE order_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    action VARCHAR(255),
+    performed_by INT,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (performed_by) REFERENCES users(id)
+);
+
+
 CREATE TABLE audit_logs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,

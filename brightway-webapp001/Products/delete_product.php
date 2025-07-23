@@ -32,6 +32,7 @@ $update = $conn->prepare("UPDATE products SET deleted_at = ? WHERE id = ?");
 $update->bind_param("si", $deleted_at, $id);
 $update->execute();
 
-header("Location: view_products.php?msg=Product deleted successfully");
+header("Location: ../Products/view_products.php?msg=Product deleted successfully");
+
 exit;
 ?>
