@@ -1,5 +1,5 @@
 <?php
-require 'includes/db.php';
+require '../includes/db.php'; 
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brightway</title>
-    <link rel="icon" type="image/x-icon" href="images/Brightway-logo.png">
+    <link rel="icon" type="image/x-icon" href="brightway-webapp001\assets\images\others\Brightway-logo.png">
     <style>
         body{
             background-color: #FAF5ED;

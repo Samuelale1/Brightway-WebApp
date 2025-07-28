@@ -1,5 +1,5 @@
 <?php
-require 'includes/db.php';
+require '../includes/db.php'; 
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -21,13 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Redirect based on role
         switch ($user['role']) {
             case 'admin':
-                header("Location: brightway-webapp001\dashboard\admin.php");
+                header("Location: ..\dashboard\admin.php");
                 break;
             case 'salesperson':
-                header("Location: brightway-webapp001\dashboard\salesperson.php");
+                header("Location: ..\dashboard\salesperson.php");
                 break;
             case 'customer':
-                header("Location: brightway-webapp001\dashboard\Customer.php");
+                header("Location: ..\dashboard\Customer.php");
                 break;
         }
         exit();
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brightway</title>
-    <link rel="icon" type="image/x-icon" href="images/Brightway-logo.png">
+    <link rel="icon" type="image/x-icon" href="brightway-webapp001\assets\images\others\Brightway-logo.png">
     <link rel="stylesheet" href="brightway-webapp001\assets\Css\Style.css">
     <style>
         *{
