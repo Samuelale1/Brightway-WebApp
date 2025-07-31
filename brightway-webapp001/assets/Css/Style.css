@@ -8,7 +8,8 @@ body{
      background-color: #FAF5ED;
         color:#083A75;
 }
-        
+
+
 .parent {
     position: absolute;
     top: 50%;
@@ -61,8 +62,9 @@ button{
     border:2px solid #EC6408;
 }
 button:hover{
-    border:1px solid #EC6408;
-    color:rgb(238, 223, 199);
+    border:3px solid #EC6408;
+    color: #083A75; 
+    
 }
 
 .product-grid {
@@ -80,7 +82,7 @@ button:hover{
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
   padding: 10px;
-  cursor: pointer;
+  
 }
 
 .product-card:hover {
@@ -88,24 +90,46 @@ button:hover{
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.product-img {
-  width: 100%;
-  height: 180px;
+.product_img{
+  width: 90%;
+  height: 50%;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 10px;
 }
 
-.product-card button {
-  background-color: #009879;
-  color: #fff;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
+.product-card:hover{
+    color: #083A75;
 }
 
-.product-card button:hover {
-  background-color: #00785f;
+table {
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
 }
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+img {
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.button {
+    margin: 10px;
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #005eff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.button:hover {
+    background-color: #003fc2;
+}
+

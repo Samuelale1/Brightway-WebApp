@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = htmlspecialchars($_POST['name']);
     $price = $_POST['price'];
     $category = htmlspecialchars($_POST['category']);
+    $quantity =  $_POST['quantity'];
     $userId = $_SESSION['user_id']; // Get who is adding the product
 
     // Handle image upload
@@ -21,9 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $created_by = $_SESSION['user_id'];
         $now = date('Y-m-d H:i:s');
 
-        $stmt = $conn->prepare("INSERT INTO products (name, price, category, image, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sdssis", $name, $price, $category, $image, $created_by, $now);
-
+        $stmt = $conn->prepare("INSERT INTO products (name, price, category, image, created_by, created_at, quantity) VALUES (?, ?, ?, ?, ?, ?, ? )");
+        $stmt->bind_param("sdssiss", $name, $price, $category, $image, $created_by, $quantity, $now);
 
 
         if ($stmt->execute()) {
@@ -67,6 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <label>Product Image:</label><br>
         <input type="file" name="image" accept="image/*" required><br><br>
+
+        <label>Quantity Available:</label><br>
+        <input type="text" name="quantity"><br><br>
 
         <button type="submit">Add Product</button>
     </form>

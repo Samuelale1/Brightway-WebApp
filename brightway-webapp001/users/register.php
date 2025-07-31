@@ -5,13 +5,15 @@ require '../includes/db.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = htmlspecialchars($_POST['name']);
     $email = $_POST['email'];
+    $phone_no = $_POST['phone'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, 'customer')");
-    $stmt->bind_param("sss", $name, $email, $password);
+    $stmt = $conn->prepare("INSERT INTO users (name, email, password, phone_no, role) VALUES (?, ?, ?, ?, 'customer')");
+    $stmt->bind_param("ssss", $name, $email, $password,$phone_no);
     
     if ($stmt->execute()) {
-        echo "<script>alert('Registration successful! Redirecting to login...'); window.location.href = 'brightway-webapp001\users\login.php';</script>";
+        echo "<script>alert('Registration successful! Redirecting to login...'); 
+        window.location.href = 'login.php';</script>";
     } else {
         $error = addslashes($stmt->error); 
         echo "<script>alert('Registration failed: $error');</script>";
@@ -24,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brightway</title>
-    <link rel="icon" type="image/x-icon" href="brightway-webapp001\assets\images\others\Brightway-logo.png">
+    <link rel="icon" type="image/x-icon" href="..assets/images/others/Brightway-logo" >
     <style>
         body{
             background-color: #FAF5ED;
@@ -37,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         form{
             border: 2px solid #EC6408;
             width: 400px;
-            height: 300px;
+            height: 350px;
             text-align: center;
             position: absolute;
             top:200px;
@@ -80,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h2>Register</h2>
                  <input type="text" name="name" required placeholder="Full Name" size="46" ><br><br>
                 <input type="email" name="email" required placeholder="Email" size="46"><br><br>
+                <input type="tel" name="phone" required placeholder="Phone" size="46" ><br><br>
                 <input type="password" name="password" required placeholder="Password" minlenth="8" size="46"><br><br>
                  <button type="submit">Register</button>
          </form>

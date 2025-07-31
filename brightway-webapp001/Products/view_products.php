@@ -105,6 +105,7 @@ $result = $stmt->get_result();
             <th>Name</th>
             <th>Price (₦)</th>
             <th>Category</th>
+            <th>quantity</th>
             <th>Added By</th>
             <th>Date</th>
             <th>Actions</th>
@@ -120,6 +121,7 @@ $result = $stmt->get_result();
                     <td><?php echo htmlspecialchars($row['name']); ?></td>
                     <td>₦<?php echo number_format($row['price'], 2); ?></td>
                     <td><?php echo htmlspecialchars($row['category']); ?></td>
+                    <td><?php echo htmlspecialchars($row['quantity']); ?></td>
                     <td><?php echo htmlspecialchars($row['creator_name']); ?></td>
                     <td><?php echo date('d M Y, h:i A', strtotime($row['created_at'])); ?></td>
                     <td class="actions">

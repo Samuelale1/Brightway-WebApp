@@ -1,37 +1,32 @@
 <?php
-session_start();
-include_once '../includes/db.php';
+include '../includes/db.php';
+include '../includes/auth.php';
 
-// Get raw JSON POST data
-$data = json_decode(file_get_contents("php://input"), true);
-$productId = $data['productId'];
-
-// Fetch product info
-$sql = "SELECT id, product_name, price, image FROM products WHERE id = $productId";
-$result = mysqli_query($conn, $sql);
-$product = mysqli_fetch_assoc($result);
-
-if ($product) {
-    // Now we create a cart if it doesn't exist
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = [];
-    }
-
-    // or if it exists we add or update item
-    if (isset($_SESSION['cart'][$productId])) {
-        $_SESSION['cart'][$productId]['quantity'] += 1;
-    } else {
-        $_SESSION['cart'][$productId] = [
-            'id' => $product['id'],
-            'name' => $product['product_name'],
-            'price' => $product['price'],
-            'image' => $product['image'],
-            'quantity' => 1
-        ];
-    }
-
-    echo json_encode(['status' => 'success', 'message' => 'Product added to cart']);
-} else {
-    echo json_encode(['status' => 'error', 'message' => 'Product not found']);
+if (!isCustomer()) {
+    echo json_encode(['status' => 'error', 'message' => 'Unauthorized']);
+    exit;
 }
+
+$data = json_decode(file_get_contents("php://input"), true);
+
+$customerId = $_SESSION['user_id'];
+$productId = intval($data['productId']);
+
+// Check if item already in cart
+$checkQuery = "SELECT * FROM order_items 
+               WHERE customer_id = $customerId AND product_id = $productId AND deleted_at IS NULL";
+$checkResult = mysqli_query($conn, $checkQuery);
+
+if (mysqli_num_rows($checkResult) > 0) {
+    // Item exists, update quantity
+    mysqli_query($conn, "UPDATE order_items 
+                         SET quantity = quantity + 1 
+                         WHERE customer_id = $customerId AND product_id = $productId AND deleted_at IS NULL");
+} else {
+    // Item doesn't exist, insert new
+    mysqli_query($conn, "INSERT INTO order_items (customer_id, product_id, quantity) 
+                         VALUES ($customerId, $productId, 1)");
+}
+
+echo json_encode(['status' => 'success', 'message' => 'Item added to cart']);
 ?>
