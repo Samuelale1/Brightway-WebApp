@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
      <div class="parent">
-        <form   method="POST">
+        <form   method="POST" class="form">
                 <h2>Register</h2>
                  <input type="text" name="name" required placeholder="Full Name" size="46" ><br><br>
                 <input type="email" name="email" required placeholder="Email" size="46"><br><br>

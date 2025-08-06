@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="parent">
-        <form method="POST">
+        <form method="POST" class="form">
             <h2 class="h2">Login</h2>
              <input type="email" name="email" required placeholder="Email"><br><br>
             <input type="password" name="password" required placeholder="Password"><br><br>

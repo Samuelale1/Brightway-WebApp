@@ -22,7 +22,7 @@ body{
     align-items: center;
 }
 
-form {
+.form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -132,4 +132,17 @@ img {
 .button:hover {
     background-color: #003fc2;
 }
+.dflex{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
 
+}
+.h3{
+    padding-top: 10px;
+    margin-left: 70px;
+}
+.pay-div{
+    margin-left:  101.55em;
+}

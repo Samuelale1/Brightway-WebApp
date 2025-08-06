@@ -18,17 +18,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $target_file = $target_dir . basename($image);
 
     if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
-        // Prepare to insert the product with user ID
-        $created_by = $_SESSION['user_id'];
+        // Add the current date to sql 
         $now = date('Y-m-d H:i:s');
 
         $stmt = $conn->prepare("INSERT INTO products (name, price, category, image, created_by, created_at, quantity) VALUES (?, ?, ?, ?, ?, ?, ? )");
-        $stmt->bind_param("sdssiss", $name, $price, $category, $image, $created_by, $quantity, $now);
+        $stmt->bind_param("sdssiss", $name, $price, $category, $image, $userId, $now, $quantity);
 
 
         if ($stmt->execute()) {
+            /* 
+            * This is where i have to change to a modal that says successfully added to database.
+            */
             $message = "✅ Product added successfully!";
         } else {
+            /* 
+            * This is also where i handle the error ui
+            */
             $message = "❌ Database error: " . $stmt->error;
         }
     } else {

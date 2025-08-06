@@ -39,8 +39,8 @@ while ($row = mysqli_fetch_assoc($result)) {
         <table border="1" cellpadding="10">
             <thead>
                 <tr>
-                    <th>Product</th>
                     <th>Image</th>
+                    <th>Product name</th>
                     <th>Price</th>
                     <th>Qty</th>
                     <th>Subtotal</th>
@@ -49,8 +49,8 @@ while ($row = mysqli_fetch_assoc($result)) {
             <tbody>
                 <?php foreach ($cartItems as $item): ?>
                     <tr>
-                        <td><?= $item['name'] ?></td>
                         <td><img src="../assets/images/products/<?= $item['image'] ?>" width="60" height="60"></td>
+                        <td><?= $item['name'] ?></td>
                         <td>₦<?= number_format($item['price'], 2) ?></td>
                         <td><?= $item['quantity'] ?></td>
                         <td>₦<?= number_format($item['subtotal'], 2) ?></td>
@@ -58,9 +58,9 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <h3>Total: ₦<?= number_format($total, 2) ?></h3>
-
-        <form action="order_submit.php" method="post">
+        <h3 class="h3">Total: ₦<?= number_format($total, 2) ?></h3>
+    <div class="pay-div dflex">
+         <form action="order_submit.php" method="post">
             <input type="hidden" name="payment_method" value="pay_on_delivery">
             <button type="submit">Pay on Delivery</button>
         </form>
@@ -69,6 +69,9 @@ while ($row = mysqli_fetch_assoc($result)) {
             <input type="hidden" name="payment_method" value="pay_now">
             <button type="submit">Pay Now</button>
         </form>
+    </div>
+
+        
     <?php endif; ?>
 </body>
 </html>
