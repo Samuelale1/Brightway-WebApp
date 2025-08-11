@@ -36,10 +36,11 @@ if (isset($_SESSION['user_id'])) {
 
     
     <h2>
-        Welcome <?php echo htmlspecialchars($_SESSION['name']); ?> to Brightway WebApp! test
+        Welcome <?php echo htmlspecialchars($_SESSION['name']); ?> to Brightway WebApp!
     </h2>
 
-    <a href="../Orders/cart.php">🛒 Cart <span id="cart-count"><?= $cart_count ?></span></a><br>    
+    <a href="../Orders/cart.php">🛒 Cart <span id="cart-count"><?= $cart_count ?></span></a><br> 
+    <a href="../users/customer_profile.php">Profile</a>   
 
     <div class="product-grid">
         <?php while ($row = mysqli_fetch_assoc($result)): ?>

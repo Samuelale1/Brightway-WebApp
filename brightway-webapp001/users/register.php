@@ -6,10 +6,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = htmlspecialchars($_POST['name']);
     $email = $_POST['email'];
     $phone_no = $_POST['phone'];
+    $address = $_POST['address'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $stmt = $conn->prepare("INSERT INTO users (name, email, password, phone_no, role) VALUES (?, ?, ?, ?, 'customer')");
-    $stmt->bind_param("ssss", $name, $email, $password,$phone_no);
+    $stmt = $conn->prepare("INSERT INTO users (name, email, password, phone_no, address, role) VALUES (?, ?, ?, ?, ?,'customer')");
+    $stmt->bind_param("sssss", $name, $email, $password,$phone_no,$address);
     
     if ($stmt->execute()) {
         echo "<script>alert('Registration successful! Redirecting to login...'); 
@@ -39,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         form{
             border: 2px solid #EC6408;
             width: 400px;
-            height: 350px;
+            height: 400px;
             text-align: center;
             position: absolute;
             top:200px;
@@ -83,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                  <input type="text" name="name" required placeholder="Full Name" size="46" ><br><br>
                 <input type="email" name="email" required placeholder="Email" size="46"><br><br>
                 <input type="tel" name="phone" required placeholder="Phone" size="46" ><br><br>
+                <input type="text" name="address" required placeholder="address" size="46" ><br><br>
                 <input type="password" name="password" required placeholder="Password" minlenth="8" size="46"><br><br>
                  <button type="submit">Register</button>
          </form>
