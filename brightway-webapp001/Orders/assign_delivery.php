@@ -1,43 +1,53 @@
 <?php
-require '../includes/auth.php';
-require '../includes/db.php';
-
+ob_start();
 header('Content-Type: application/json');
+session_start();
+include '../includes/db.php';
+include '../includes/auth.php';
 
-// Only logged-in salesperson can access
+// Ensure logged-in salesperson
 if (!isSalesperson()) {
     echo json_encode(["status" => "error", "message" => "Unauthorized"]);
-    exit;
+    exit();
 }
 
-// Get JSON input
+// Get JSON data from fetch()
 $data = json_decode(file_get_contents("php://input"), true);
-if (!isset($data['order_id']) || !isset($data['delivery_person'])) {
-    echo json_encode(["status" => "error", "message" => "Invalid request"]);
-    exit;
+
+if (!isset($data['order_id'], $data['delivery_person_name'], $data['delivery_person_phone'])) {
+    echo json_encode(["status" => "error", "message" => "Missing required fields."]);
+    exit();
 }
 
 $order_id = intval($data['order_id']);
-$delivery_person = trim($data['delivery_person']);
-$salesperson_id = $_SESSION['user_id']; // logged in salesperson
+$delivery_person_name = trim($data['delivery_person_name']);
+$delivery_person_phone = trim($data['delivery_person_phone']);
+$salesperson_id = $_SESSION['user_id'] ?? null;
 
-if ($delivery_person === '') {
-    echo json_encode(["status" => "error", "message" => "Delivery person name is required"]);
-    exit;
+if (!$salesperson_id) {
+    echo json_encode(["status" => "error", "message" => "No salesperson session found."]);
+    exit();
 }
 
-// Update the orders table
 $sql = "UPDATE orders 
-        SET salesperson_id = ?, delivery_person = ?, sent_at = NOW(), status = 'sent'
+        SET delivery_person_name = ?, 
+            delivery_person_phone = ?, 
+            salesperson_id = ?, 
+            sent_out_at = NOW(), 
+            status = 'sent'
         WHERE id = ?";
+
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("isi", $salesperson_id, $delivery_person, $order_id);
+$stmt->bind_param("ssii", $delivery_person_name, $delivery_person_phone, $salesperson_id, $order_id);
 
 if ($stmt->execute()) {
-    echo json_encode(["status" => "success", "message" => "Delivery assigned successfully"]);
+    ob_clean();
+    echo json_encode(["status" => "success", "message" => "Order assigned successfully."]);
 } else {
-    echo json_encode(["status" => "error", "message" => "Failed to assign delivery"]);
+    ob_clean();
+    echo json_encode(["status" => "error", "message" => "Failed to assign delivery."]);
 }
 
 $stmt->close();
 $conn->close();
+exit();
