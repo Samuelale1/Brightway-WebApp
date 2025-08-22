@@ -10,7 +10,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-date_default_timezone_set('Africa/Lagos'); // or your actual region
+date_default_timezone_set('Africa/Lagos'); // this is to get the accurate time in Nigeria.
 
 ?>
 

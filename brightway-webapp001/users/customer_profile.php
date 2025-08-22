@@ -46,3 +46,4 @@ $orders = mysqli_query($conn, "SELECT * FROM orders WHERE customer_id = $uid ORD
 </tr>
 <?php endwhile; ?>
 </table>
+

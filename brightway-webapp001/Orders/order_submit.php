@@ -36,5 +36,5 @@ foreach ($items as $it) {
     $stmt2->bind_param("ii", $order_id, $it['order_item_id']);
     $stmt2->execute();
 }
-
+// from here i route them back to the dashboard page or add loader to say successful after order has been paid
 echo "<script>alert('Order placed successfully!'); window.location.href='../dashboard/customer.php'</script>";

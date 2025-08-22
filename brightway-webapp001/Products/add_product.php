@@ -50,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="icon" type="image/x-icon" href="images/Brightway-logo.png">
     <title>Add Product</title>
     <link rel="stylesheet" href="brightway-webapp001\assets\Css\Style.css">
+    <link rel="icon" type="image/x-icon" href="..\assets\images\others\Brightway-logo.png">
 </head>
 <body style="font-family: sans-serif;">
     <h2>Add New Product</h2>

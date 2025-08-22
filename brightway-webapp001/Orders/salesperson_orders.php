@@ -2,15 +2,12 @@
 require '../includes/auth.php';
 include_once '../includes/db.php';
 
-if (!isSalesperson()) {
-    echo "<script>alert('Access denied'); window.location.href='../users/login.php'</script>";
-    exit();
-}
+requireLogin('admin');
 
 $sql = "SELECT o.*, u.name AS customer_name, u.address, u.phone_no 
         FROM orders o 
         JOIN users u ON o.customer_id = u.id
-        WHERE o.status IN ('pending', 'paid', 'sent')
+        WHERE o.status IN ('pending', 'paid')
         ORDER BY o.created_at ASC";
 $result = mysqli_query($conn, $sql);
 ?>

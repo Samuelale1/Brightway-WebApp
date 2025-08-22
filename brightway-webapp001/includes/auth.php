@@ -12,6 +12,10 @@ function isLoggedIn() {
 /**
  * Force login before accessing a page
  * Optionally check for user role
+ * the function is called as an array for 2 parameters
+ * requireLogin(['admin', 'salesperson']);
+ * OR
+ * requireLogin('salesperson');
  */
 function requireLogin($roles = null) {
     if (!isLoggedIn()) {
@@ -25,6 +29,7 @@ function requireLogin($roles = null) {
         exit();
     }
 }
+
 
 
 /**

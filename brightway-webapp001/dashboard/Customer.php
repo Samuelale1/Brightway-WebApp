@@ -5,10 +5,7 @@ ini_set('display_errors', 1);
 require '../includes/auth.php';
 require '../includes/db.php';
 
-if (!isCustomer()) {
-    echo "<script>alert('Access denied'); window.location.href = '../users/login.php'</script>";
-    exit();
-}
+requireLogin( 'customer');
 
 // Fetch products
 $sql = "SELECT * FROM products WHERE deleted_at IS NULL";
@@ -30,6 +27,7 @@ if (isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <title>Customer Dashboard</title>
     <link rel="stylesheet" href="../assets/Css/Style.css">
+     <link rel="icon" type="image/x-icon" href="..\assets\images\others\Brightway-logo.png">
 </head>
 <body>
     <main>

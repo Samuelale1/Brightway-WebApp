@@ -37,6 +37,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 <head>
     <title>Cart</title>
     <link rel="stylesheet" href="../assets/Css/Style.css">
+    <link rel="icon" type="image/x-icon" href="..\assets\images\others\Brightway-logo.png">
     <script>
     function toggleAddressEdit() {
         document.getElementById("address").readOnly = !document.getElementById("address").readOnly;

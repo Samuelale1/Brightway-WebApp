@@ -2,47 +2,45 @@
 require '../includes/auth.php';
 include_once '../includes/db.php';
 
-if (!isSalesperson()) {
-    echo "<script>alert('Access denied'); window.location.href = '../users/login.php'</script>";
-    exit();
-}
+requireLogin(['admin', 'salesperson']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Salesperson Dashboard</title>
-<link rel="stylesheet" href="../assets/Css/Style.css">
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 220px;
-    height: 100%;
-    background: #222;
-    color: white;
-    padding-top: 20px;
-}
-.sidebar a {
-    display: block;
-    padding: 15px;
-    text-decoration: none;
-    color: white;
-}
-.sidebar a:hover {
-    background: #444;
-}
-.main {
-    margin-left: 230px;
-    padding: 20px;
-}
-</style>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Salesperson Dashboard</title>
+        <link rel="stylesheet" href="../assets/Css/Style.css">
+        <link rel="icon" type="image/x-icon" href="..\assets\images\others\Brightway-logo.png">
+        <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 220px;
+            height: 100%;
+            background: #222;
+            color: white;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: white;
+        }
+        .sidebar a:hover {
+            background: #444;
+        }
+        .main {
+            margin-left: 230px;
+            padding: 20px;
+        }
+        </style>
+    </head>
 <body>
 
 <div class="sidebar">

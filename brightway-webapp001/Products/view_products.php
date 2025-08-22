@@ -53,6 +53,7 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <title>View Products</title>
+    <link rel="icon" type="image/x-icon" href="..\assets\images\others\Brightway-logo.png">
     <style>
         body {
             font-family: sans-serif;

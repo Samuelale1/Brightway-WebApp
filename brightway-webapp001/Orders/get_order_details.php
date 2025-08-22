@@ -18,7 +18,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    echo "No items found.";
+    echo "<script> alert('No items in cart')</script>";
     exit;
 }
 
