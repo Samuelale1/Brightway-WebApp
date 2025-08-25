@@ -41,6 +41,7 @@ $result = $stmt->get_result();
 <head>
     <title>Treated Orders</title>
     <link rel="stylesheet" href="../assets/Css/Style.css">
+    <link rel="icon" type="image/x-icon" href="..\assets\images\others\Brightway-logo.png">
     <style>
         .main { margin: 20px; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }

@@ -53,9 +53,10 @@ if ($type === 'excel') {
 
 // PDF Export
 if ($type === 'pdf') {
-    require_once("../vendor/autoload.php"); // Assuming dompdf installed
-    use Dompdf\Dompdf;
-    $dompdf = new Dompdf();
+    // ✅ require vendor autoload and import Dompdf at the top of the block
+    require_once("../vendor/autoload.php");
+    // You MUST declare use at top of file, so let's do it inline:
+    $dompdf = new \Dompdf\Dompdf();
 
     $html = "<h2>Treated Orders Report</h2><table border='1' cellspacing='0' cellpadding='5'><tr>";
     foreach (array_keys($orders[0]) as $col) $html .= "<th>$col</th>";
@@ -72,6 +73,7 @@ if ($type === 'pdf') {
     $dompdf->render();
     $dompdf->stream("treated_orders.pdf", ["Attachment" => 1]);
     exit();
+
 }
 
 echo "Invalid export type.";

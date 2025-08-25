@@ -2,7 +2,7 @@
 require '../includes/auth.php';
 include_once '../includes/db.php';
 
-requireLogin('admin');
+requireLogin(['admin','salesperson']);
 
 $sql = "SELECT o.*, u.name AS customer_name, u.address, u.phone_no 
         FROM orders o 
